@@ -1,63 +1,64 @@
-import React from 'react';
-import { Router } from '@reach/router';
-import './App.css';
-import SvgEditor from './SvgEditor';
-import About from './pages/About.jsx';
-import Contact from './pages/Contact.jsx'
-import Blog from './pages/Blog.jsx'
-import Home from './pages/Home.jsx'
-import Portfolio from './pages/Portfolio.jsx'
-import ResponsiveNavigation from './components/ResponsiveNavigation.jsx';
-import siblogo from './images/siblogo.png'
-import logo from './images/three-line.png'
+import React from "react";
+import { Router } from "@reach/router";
+import "./App.css";
+import SvgEditor from "./SvgEditor";
+import About from "./pages/About.jsx";
+import Contact from "./pages/Contact.jsx";
+import Blog from "./pages/Blog.jsx";
+import Home from "./pages/Home.jsx";
+import Portfolio from "./pages/Portfolio.jsx";
+import ResponsiveNavigation from "./components/ResponsiveNavigation.jsx";
+import siblogo from "./images/siblogo.png";
+import logo from "./images/three-line.png";
+import Editor from "./components/Editor.jsx";
 
 function App() {
-  
   const navLinks = [
     {
-      text: 'Объекты учета',
-      path: '/',
-      icon: 'ion-ios-home'
+      text: "Объекты учета",
+      path: "/",
+      icon: "ion-ios-home"
     },
     {
-      text: 'Мнемосхемы',
-      path: '/contact',
-      icon: 'ion-ios-megaphone'
+      text: "Мнемосхемы",
+      path: "/contact",
+      icon: "ion-ios-megaphone"
     },
     {
-      text: 'Отчеты',
-      path: '/about',
-      icon: 'ion-ios-business'
+      text: "Отчеты",
+      path: "/about",
+      icon: "ion-ios-business"
     },
     {
-      text: 'Справочники',
-      path: '/blog',
-      icon: 'ion-ios-bonfire'
+      text: "Справочники",
+      path: "/blog",
+      icon: "ion-ios-bonfire"
     },
     {
-      text: 'Избранное',
-      path: '/portfolio',
-      icon: 'ion-ios-briefcase'
-    },
-  ]
+      text: "Избранное",
+      path: "/portfolio",
+      icon: "ion-ios-briefcase"
+    }
+  ];
 
   return (
     <div className="App">
-      <ResponsiveNavigation
+      {/*<ResponsiveNavigation
         navLinks = {navLinks}
         logo = {logo}
         siblogo = {siblogo}
         background = "#FBCE20"
         hoverBackground = "white"
         linkColor = "#333"
-      />
-      <Router>
+      />*/}
+      <Editor />
+      {/*<Router>
         <Contact path="/contact" />
         <Home path="/" />
         <Portfolio path="/portfolio" />
         <Blog path="/blog" />
         <About path="/about" />
-      </Router>
+      </Router> */}
     </div>
   );
 }
