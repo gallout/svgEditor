@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
+import SvgEditor from "../SvgEditor";
+import "../App.css";
 
 class About extends Component {
     render() {
         return (
-            <div> </div>
+            <div><SvgEditor /></div>
         )
     }
 }

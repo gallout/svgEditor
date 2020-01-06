@@ -1,5 +1,10 @@
 .App {
   font-family: monospace;
+  position: absolute;
+}
+
+.AppElem {
+  margin: 8em;
 }
 
 .svgCarrier{

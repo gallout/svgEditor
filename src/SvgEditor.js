@@ -124,7 +124,7 @@ class SvgEditor extends Component {
 
   render() {
   return (
-    <div className="App">
+    <div className="SvgEditor">
       <div className="holder">
         <div ref={"_svgCarrier"} className = "svgCarrier" onClick={this.chooseElement.bind(this)}></div>
         {this.state.currentElement &&

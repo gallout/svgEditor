@@ -1,7 +1,6 @@
 import React from "react";
 import { Router } from "@reach/router";
 import "./App.css";
-import SvgEditor from "./SvgEditor";
 import About from "./pages/About.jsx";
 import Contact from "./pages/Contact.jsx";
 import Blog from "./pages/Blog.jsx";
@@ -10,7 +9,6 @@ import Portfolio from "./pages/Portfolio.jsx";
 import ResponsiveNavigation from "./components/ResponsiveNavigation.jsx";
 import siblogo from "./images/siblogo.png";
 import logo from "./images/three-line.png";
-import Editor from "./components/Editor.jsx";
 
 function App() {
   const navLinks = [
@@ -43,22 +41,26 @@ function App() {
 
   return (
     <div className="App">
-      {/*<ResponsiveNavigation
+      <div className="AppNav">
+      <ResponsiveNavigation
         navLinks = {navLinks}
         logo = {logo}
         siblogo = {siblogo}
         background = "#FBCE20"
         hoverBackground = "white"
         linkColor = "#333"
-      />*/}
-      <Editor />
-      {/*<Router>
-        <Contact path="/contact" />
-        <Home path="/" />
-        <Portfolio path="/portfolio" />
-        <Blog path="/blog" />
-        <About path="/about" />
-      </Router> */}
+      />
+      </div>
+      
+      <div className="AppElem"> 
+        <Router>
+          <Contact path="/contact" />
+          <Home path="/" />
+          <Portfolio path="/portfolio" />
+          <Blog path="/blog" />
+          <About path="/about" />
+        </Router>
+      </div>
     </div>
   );
 }
