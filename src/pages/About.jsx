@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import SvgEditor from "../SvgEditor";
+import SvgEditor from "../components/SvgEditor.jsx";
 import "../App.css";
 
 class About extends Component {

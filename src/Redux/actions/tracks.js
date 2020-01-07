@@ -5,21 +5,21 @@ var mockApiData = [
     },
     {
         id: 2,
-        name: 'Mister Sandman'
+        name: 'Welcome home'
     },
     {
         id: 3,
-        name: 'Mister Sandman'
+        name: 'Master of Puppets'
     },
     {
         id: 4,
-        name: 'Mister Sandman'
+        name: 'Fade to black'
     },
 ]
 
 export const getTracks = () => dispatch => {
     setTimeout(() => {
         console.log('i got tracks');
-        dispatch({type:'FETCH_TRACKS_SUCCESS', payload: []})
+        dispatch({type:'FETCH_TRACKS_SUCCESS', payload: mockApiData})
     }, 2000)
 }

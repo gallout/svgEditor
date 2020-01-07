@@ -52,7 +52,7 @@ class Home extends Component {
                 <button onClick={this.findTrack.bind(this)}>findTrack</button> 
             </div>
             <div>
-                <button onClick={this.props.onGetTracks}>GetTracks</button> 
+                <button onClick={this.props.onGetTracks}>getTracks</button> 
             </div>
             <ul> {this.props.tracks.map((track, index) => 
                 <li key={index}>{track.name}</li>
@@ -65,7 +65,7 @@ class Home extends Component {
 
 export default connect(
     state => ({
-      tracks: state.tracks.filter(track => track.name.includes(state.filterTracks) )
+      tracks: state.tracks.filter(track => track.name.includes(state.filterTracks))
     }),
     dispatch => ({
         onAddTrack: (name) => {

@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-import './App.css';
+import '../App.css';
 
 let defaultTextArea = `
 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -8,14 +8,14 @@ viewBox="0 0 483.334 483.334" style="enable-background:new 0 0 483.334 483.334;"
 <g id="XMLID_1367_">
 <g id="XMLID_1365_">
  <polygon style="fill:#FFFFFF;" points="322.223,388.043 380.809,373.397 417.425,344.104 446.718,285.518 432.071,256.225 
-   270.96,256.225 270.96,73.144 263.637,65.821 227.02,80.467 190.404,124.407 190.404,292.841 234.344,358.75 		"/>
+   270.96,256.225 270.96,73.144 263.637,65.821 227.02,80.467 190.404,124.407 190.404,292.841 234.344,358.75"/>
 </g>
 <g id="XMLID_1366_">
  <path style="fill:#EDEDED;" d="M270.961,258.347c-21.176,6.302-36.618,25.918-36.618,49.14c0,28.312,22.951,51.263,51.263,51.263
    h124.495l-58.586-58.586H248.99"/>
 </g>
 <g id="XMLID_1311_">
- <polygon style="fill:#F39200;" points="190.404,146.376 14.647,146.376 0,124.407 190.404,124.407 		"/>
+ <polygon style="fill:#F39200;" points="190.404,146.376 14.647,146.376 0,124.407 190.404,124.407"/>
 </g>
 <g id="XMLID_1279_">
  <path style="fill:#575756;" d="M483.334,344.104H284.859c-19.81,0-35.869-16.059-35.869-35.869v-22.717h197.727L483.334,344.104z"
@@ -52,36 +52,7 @@ viewBox="0 0 483.334 483.334" style="enable-background:new 0 0 483.334 483.334;"
 <polygon style="fill:#1D1D1B;" points="322.399,431.806 322.399,402.689 307.399,402.689 307.399,431.806 285.606,431.806 
  285.606,446.806 337.962,446.806 337.962,431.806 	"/>
 </g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
+
 </svg>`;
 
 class SvgEditor extends Component {
@@ -107,7 +78,7 @@ class SvgEditor extends Component {
     let textarea = this.refs._textarea;
     textarea.value = "Processing...";
     setTimeout(() => {
-      textarea.value=    svgCarrier.innerHTML;
+      textarea.value = svgCarrier.innerHTML;
     }, 1000)
   }
   chooseElement(e) {
