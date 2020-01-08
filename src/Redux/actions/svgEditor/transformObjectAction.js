@@ -1,7 +1,8 @@
 export const TRANSFORM_OBJECT = 'TRANSFORM_OBJECT';
 
-// The function, submitValue, is an 'action creator'
+// The function, handleMouseUpAction, is an 'action creator'
 // The return value is an 'action'
+// Перемещение объекта
 export const transformObjectAction = (objects, objMoveId, dragStart, e) => dispatch => {
 
     const index = objects.findIndex(o => o.id === objMoveId);

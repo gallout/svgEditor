@@ -1,11 +1,12 @@
-export const ADD_RECT = 'ADD_RECT';
+export const ADD_CIRC = 'ADD_CIRC';
 
-// The function, submitValue, is an 'action creator'
+// The function, addCircle, is an 'action creator'
 // The return value is an 'action'
-export const addRectangle = (xStart, yStart, shiftKey) => (dispatch) => {
+// Создает объект круг
+export const addCircle = (xStart, yStart, shiftKey) => (dispatch) => {
     const obj = {
         id: Date.now(), // id объекта
-        type: "rect", // тип объекта
+        type: "circ", // тип объекта
         bg:
           "rgb(" + [255,255,255] + ")", // цвет объекта
         stroke: "black", // цвет рамки
@@ -15,10 +16,10 @@ export const addRectangle = (xStart, yStart, shiftKey) => (dispatch) => {
         xEnd: xStart, // изначально равно xStart, затем изменяется после ресайза
         yEnd: yStart, // изначально равно yStart, затем изменяется после ресайза
         locked: shiftKey // необходим для увеличения объекта, если зажат Shift
-    };
+      };
 
     dispatch({
-        type: ADD_RECT,
+        type: ADD_CIRC,
         obj: obj,
     })
 }

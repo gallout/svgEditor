@@ -1,16 +1,8 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux';
-import submittedValueReducer from './reducers/submittedValueReducer';
 import reducers from './reducers/combinedReducers';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import thunk from 'redux-thunk';
 import brush from '../images/brush.svg'
-
-// combineReducers takes in multiple reducers, and returns a single reducer to be used in the createStore(...) function.
-// combineReducers takes in multiple 'key : value' pairs to combine the reducers.
-// The key is the name of variable within state (in the redux store), and the value is the reducer used to change that variable.
-const allReducers = combineReducers({
-    submittedValue: submittedValueReducer
-});
 
 let blob = `
 CjxzdmcgdmVyc2lvbj0iMS4xIiBpZD0iTGF5ZXJfMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0c
@@ -65,8 +57,9 @@ export const store = createStore(
         objects: [], //список svg-объектов,
         imgUrls: [
           { name : "Бочка", src : brush, svgPath: blob  },
-         // { name : "Линии", /*src : 'https://source.unsplash.com/lVmR1YaBGG4/800x600',*/ svgPath: blob  },
-         /* { name : "Круги", src : 'https://source.unsplash.com/5KvPQc1Uklk/800x600' },
+          /*
+          { name : "Линии", src : 'https://source.unsplash.com/lVmR1YaBGG4/800x600', svgPath: blob  },
+          { name : "Круги", src : 'https://source.unsplash.com/5KvPQc1Uklk/800x600' },
           { name : "Гант", src : 'https://source.unsplash.com/GtYFwFrFbMA/800x600' },
           { name : "Крест", src : 'https://source.unsplash.com/Igct8iZucFI/800x600' },
           { name : "Лок", src : 'https://source.unsplash.com/M01DfkOqz7I/800x600' },
@@ -78,15 +71,10 @@ export const store = createStore(
           { name : "Вов", src : 'https://source.unsplash.com/iPum7Ket2jo/800x600' }, */                
       ]
     }},
-     /*,
-    
-    {
-        submittedValue: ')sdrawkcaB ti daeR( Nothing has been submitted yet'
-    }, */
     composeWithDevTools(applyMiddleware(thunk))
     //window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__() 
 );
 
-store.subscribe(() => {console.log('subscribe', store.getState())} )
+//store.subscribe(() => {console.log('subscribe', store.getState())} )
 
 

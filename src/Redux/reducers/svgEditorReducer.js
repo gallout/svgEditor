@@ -1,11 +1,12 @@
-import { ADD_RECT } from '../actions/addRectangle';
-import { ADD_CIRC } from '../actions/addCircle';
-import { SET_TOOL } from '../actions/setToolAction';
-import { CLEAR_MOVEID } from '../actions/clearMoveIdAction';
-import { TRANSFORM_OBJECT } from '../actions/transformObjectAction';
-import { SET_END_SIZE } from '../actions/setObjectEndSizeValues';
-import { HANDLE_MOUSE_UP } from '../actions/handleMouseUpAction';
-import { HANDLE_MOUSE_DOWN_OBJ } from '../actions/handleMouseDownObjAction';
+import { ADD_RECT } from '../actions/svgEditor/addRectangle';
+import { ADD_CIRC } from '../actions/svgEditor/addCircle';
+import { SET_TOOL } from '../actions/svgEditor/setToolAction';
+import { CLEAR_MOVEID } from '../actions/svgEditor/clearMoveIdAction';
+import { TRANSFORM_OBJECT } from '../actions/svgEditor/transformObjectAction';
+import { SET_END_SIZE } from '../actions/svgEditor/setObjectEndSizeValues';
+import { HANDLE_MOUSE_UP } from '../actions/svgEditor/handleMouseUpAction';
+import { HANDLE_MOUSE_DOWN_OBJ } from '../actions/svgEditor/handleMouseDownObjAction';
+import { CLEAR_OBJECTS } from '../actions/svgEditor/clearObjectsAction'; 
 
 // null is set as the default value here for state, because Redux will complain if state is undefined. 
 // You can set initial state here, but it is recommended on the Redux documentation to preload the state within the redux store. 
@@ -72,7 +73,6 @@ export default function svgEditorReducer(state = null, action) {
                 circObject: action.circObject
             }
         case HANDLE_MOUSE_DOWN_OBJ:
-            console.log(action);
             return {
                 ...state,
                 objMoveId: action.objMoveId,
@@ -80,6 +80,11 @@ export default function svgEditorReducer(state = null, action) {
                     x: action.clientX,
                     y: action.clientY
                 }
+            }
+        case CLEAR_OBJECTS:
+            return {
+                ...state,
+                objects: action.objects
             }
         default:
             return state;

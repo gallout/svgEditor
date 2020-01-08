@@ -3,14 +3,15 @@ import classNames from "classnames";
 import taplogo from "../images/tap.svg";
 import ImagesSet from "../components/ImagesSet"
 import { connect } from "react-redux";
-import { addRectangle } from '../Redux/actions/addRectangle'
-import { addCircle } from '../Redux/actions/addCircle'
-import { setToolAction } from '../Redux/actions/setToolAction'
-import { clearMoveIdAction } from '../Redux/actions/clearMoveIdAction'
-import { transformObjectAction } from '../Redux/actions/transformObjectAction'
-import { setObjectEndSizeValues } from '../Redux/actions/setObjectEndSizeValues'
-import { handleMouseUpAction } from '../Redux/actions/handleMouseUpAction'
-import { handleMouseDownObjAction } from '../Redux/actions/handleMouseDownObjAction'
+import { addRectangle } from '../Redux/actions/svgEditor/addRectangle'
+import { addCircle } from '../Redux/actions/svgEditor/addCircle'
+import { setToolAction } from '../Redux/actions/svgEditor/setToolAction'
+import { clearMoveIdAction } from '../Redux/actions/svgEditor/clearMoveIdAction'
+import { transformObjectAction } from '../Redux/actions/svgEditor/transformObjectAction'
+import { setObjectEndSizeValues } from '../Redux/actions/svgEditor/setObjectEndSizeValues'
+import { handleMouseUpAction } from '../Redux/actions/svgEditor/handleMouseUpAction'
+import { handleMouseDownObjAction } from '../Redux/actions/svgEditor/handleMouseDownObjAction'
+import { clearObjectsAction } from '../Redux/actions/svgEditor/clearObjectsAction'
 
 /*let defaultTextArea = `
 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -89,7 +90,6 @@ class Editor extends React.Component {
 
   // Метод для записи инструмента, выбранного пользователем
   handleSelectTool(tool) {
-    //this.setState({ tool });
     this.props.onSelectTool(tool);
   }
   
@@ -103,7 +103,6 @@ class Editor extends React.Component {
 
   // Метод возврата состояния объекта после перемещения
   handleMouseUpObj(obj, e) {
-    //this.setState({ objMoveId: null });
     this.props.onClearMoveId()
   }
 
@@ -147,16 +146,13 @@ class Editor extends React.Component {
   // Метод поиска объекта в списке объектов по Id и установка конечных значений по x и у
   findObjByIdAndSet_xEnd_And_yEnd(objId, e) {
     const { objects } = this.props.svgEditor
-
     const { x: xEnd, y: yEnd } = this.getCoords(e);
-
     this.props.onSetObjectEndSizeValues(objects, objId, e, xEnd, yEnd);
   }
 
   // Метод перемещения объекта
   findObjAndTransformOnPage(objMoveId, dragStart, e) {
     const { objects } = this.props.svgEditor
-
     this.props.onTransformObject(objects, objMoveId, dragStart, e);
   }
 
@@ -234,6 +230,7 @@ class Editor extends React.Component {
 
   // Метод для очистки рабочей Svg-области и для очистки LocalStorage от всех объектов
   eraseElems() {
+    //this.props.onClearObjects(this.props.svgEditor.objects);
     let svgBlock = this.svgRef.current;
     svgBlock.innerHTML = "";
     localStorage.removeItem("canvas");
@@ -319,6 +316,10 @@ export default connect(
 
       onClearMoveId: () => {
         dispatch(clearMoveIdAction())
+      },
+
+      onClearObjects: (objects) => {
+        dispatch(clearObjectsAction(objects))
       },
 
       onTransformObject: (objects, objMoveId, dragStart, e) => {
