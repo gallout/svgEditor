@@ -15,12 +15,14 @@ class ImagesSet extends React.Component {
 
         if(element.props.currentIndex != null) {
             var clonableElem = document.getElementById('svgPicture');
-            let objectReplica = clonableElem.cloneNode(true);
-            objectReplica.style.fillOpacity = "0.5";
-            objectReplica.id = "dragImage";
-            objectReplica.class = "dragImage";
-            objectReplica.style.position = "absolute";
-            document.getElementById('svgEditPanel').appendChild(objectReplica.firstElementChild.firstElementChild);
+            if(clonableElem) {
+              let objectReplica = clonableElem.cloneNode(true);
+              objectReplica.style.fillOpacity = "0.5";
+              objectReplica.id = "dragImage";
+              objectReplica.class = "dragImage";
+              objectReplica.style.position = "absolute";
+              document.getElementById('svgEditPanel').appendChild(objectReplica.firstElementChild.firstElementChild);
+            }
         }
     }
 
