@@ -48,6 +48,9 @@ Pgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+
 export const store = createStore(
     reducers,
     {
+    svgImagesSet: {  
+        currentIndex: null, // поле класса ImagesSet
+    },
     svgEditor: {
         tool: null, // инструмент, выбранный пользователем
         objMoveId: null, // ID объекта, который необходимо передвинуть

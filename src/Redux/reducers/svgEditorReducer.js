@@ -12,6 +12,7 @@ import { CLEAR_OBJECTS } from '../actions/svgEditor/clearObjectsAction';
 // You can set initial state here, but it is recommended on the Redux documentation to preload the state within the redux store. 
 // https://redux.js.org/recipes/structuring-reducers/initializing-state
 
+
 export default function svgEditorReducer(state = null, action) {
     switch (action.type) {
         case ADD_RECT:

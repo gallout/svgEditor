@@ -1,20 +1,19 @@
 import React, { Component } from 'react';
+import { connect } from "react-redux";
 import ImageModalWindow from './ImageModalWindow';
+import { setCurrentIndex } from '../Redux/actions/imagesSet/setCurrentIndex'
 
-class ImagesSet extends Component {
-
-    constructor(props) {
-        super(props);
-        this.state = { currentIndex: null };
-        this.closeModal = this.closeModal.bind(this);
-        this.findNext = this.findNext.bind(this);
-        this.findPrev = this.findPrev.bind(this);
-        this.renderImageContent = this.renderImageContent.bind(this);
-    }
-
+class ImagesSet extends React.Component {
+  constructor(props) {
+    super(props);
+    //this.closeModal = this.closeModal.bind(this);
+    //this.findNext = this.findNext.bind(this);
+    //this.findPrev = this.findPrev.bind(this);
+    this.renderImageContent = this.renderImageContent.bind(this);
+}
     objectCloneGet(element){
-    
-        if(element.state.currentIndex != null) {
+
+        if(element.props.currentIndex != null) {
             var clonableElem = document.getElementById('svgPicture');
             let objectReplica = clonableElem.cloneNode(true);
             objectReplica.style.fillOpacity = "0.5";
@@ -57,17 +56,18 @@ class ImagesSet extends Component {
     }
 
     openModal(e, index) {
-        this.setState ({ currentIndex: index });
+        //this.setState ({ currentIndex: index });
+        this.props.onSetCurrentIndex(index);
     }
-
+    /*
     closeModal(e) {
         if (e != undefined) {
           e.preventDefault();
         }
         this.setState ({ currentIndex: null });
-    }
+    }*/
 
-    findPrev(e) {
+    /*findPrev(e) {
         if (e != undefined) {
           e.preventDefault();
         }
@@ -83,7 +83,7 @@ class ImagesSet extends Component {
         this.setState(prevState => ({
           currentIndex: prevState.currentIndex + 1
         }));
-    }
+    }*/
 
     render() {
       const { imgUrls } = this.props;
@@ -106,4 +106,14 @@ class ImagesSet extends Component {
     }
 }
 
-export default ImagesSet;
+export default connect(
+
+  state => ({
+    currentIndex: state.svgImagesSet.currentIndex
+  }),
+  dispatch => ({
+    onSetCurrentIndex: (index) => {
+      dispatch(setCurrentIndex(index))
+    }
+  })
+)(ImagesSet);
