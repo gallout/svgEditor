@@ -289,7 +289,10 @@ class Editor extends React.Component {
         </svg>
       </div>
       <div className="marginBlock">
-        <ImagesSet  imgUrls={imgUrls} /> 
+        <ImagesSet  
+                imgUrls={imgUrls} 
+                svgEditor={this.props.svgEditor} 
+         /> 
       </div>
       </div>
     );

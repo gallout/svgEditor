@@ -5,7 +5,7 @@ import "../App.css";
 class Blog extends Component {
     render() {
         return (
-            <div> <Editor /> </div>
+            <div>  <div className="knpk"> КНПК </div> <Editor /> </div>
         )
     }
 }

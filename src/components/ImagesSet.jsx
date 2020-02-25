@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from "react-redux";
 import ImageModalWindow from './ImageModalWindow';
 import { setCurrentIndex } from '../Redux/actions/imagesSet/setCurrentIndex'
+import classNames from "classnames";
 
 class ImagesSet extends React.Component {
   constructor(props) {
@@ -10,8 +11,16 @@ class ImagesSet extends React.Component {
     //this.findNext = this.findNext.bind(this);
     //this.findPrev = this.findPrev.bind(this);
     this.renderImageContent = this.renderImageContent.bind(this);
-}
-    objectCloneGet(element){
+  }
+  
+  // Вызывается после обновления объекта в DOM-дерево
+  componentDidUpdate() {
+    localStorage.setItem("canvas", JSON.stringify(this.props.svgEditor)); // Обновление localStorage
+  }
+  
+  objectCloneGet(element){
+    const { svgEditor } = this.props;
+    console.log(svgEditor);
 
         if(element.props.currentIndex != null) {
             var clonableElem = document.getElementById('svgPicture');
@@ -26,8 +35,28 @@ class ImagesSet extends React.Component {
         }
     }
 
-    renderImageContent(obj, index) {
+    // Метод для получения относительного расположения объекта на странице
+    getCoords({ clientX, clientY }) {
+      const { top, left } = this.svgRef.current.getBoundingClientRect(); // Возвращает объект координат элемента
+      return { x: clientX - left, y: clientY - top };
+    }
 
+    // Метод создания объекта с уникальным ID
+    handleMouseDown(e) {
+      const { shiftKey } = e;
+      const { x: xStart, y: yStart } = this.getCoords(e);
+
+      const {tool} = this.props.svgEditor
+
+      if (tool === "SVG") {
+          console.log("ok")
+      }
+
+    }
+
+    renderImageContent(obj, index) {
+      const { svgEditor } = this.props;
+        console.log(svgEditor);
       /*var div = document.createElement('div');
       div.style.height = "100px";
       div.style.width = "100px";
@@ -41,9 +70,14 @@ class ImagesSet extends React.Component {
           <div className="imgContainer" 
                 id="svgPicture"
                 key={index} 
-                onClick={(e) => this.openModal(e, index)} 
+                onClick={(e) => { 
+                                this.setIndex(e, index);       
+                                this.objectCloneGet(this); 
+                                this.handleMouseDown(e);}} 
                 dangerouslySetInnerHTML={{ __html: window.atob(obj.svgPath) }}
-                onMouseDown={this.objectCloneGet(this)}
+                className={classNames({ active: svgEditor.tool === "SVG" })}
+
+                ref={this.svgRef}
                >  
         </div> 
      /* <img className="imgShow" id={obj.name} src={obj.src} key={index} ></img> */
@@ -57,9 +91,10 @@ class ImagesSet extends React.Component {
         )
     }
 
-    openModal(e, index) {
+    setIndex(e, index) {
         //this.setState ({ currentIndex: index });
         this.props.onSetCurrentIndex(index);
+        console.log(this.props);
     }
     /*
     closeModal(e) {
@@ -89,7 +124,6 @@ class ImagesSet extends React.Component {
 
     render() {
       const { imgUrls } = this.props;
-
         return (
             <div className="gallery-container">
                 <h1>🔥 Мнемосхемы</h1>
