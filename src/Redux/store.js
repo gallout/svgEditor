@@ -48,16 +48,15 @@ Pgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+
 export const store = createStore(
     reducers,
     {
-    svgImagesSet: {  
-        currentIndex: null, // поле класса ImagesSet
-    },
     svgEditor: {
         tool: null, // инструмент, выбранный пользователем
         objMoveId: null, // ID объекта, который необходимо передвинуть
         rectObject: null, // ID квадрата
         circObject: null, // ID эллипса
+        svgObject: null,
         dragStart: null, // объект с координатами по х и у, с которых необходимо начать перемещение объекта
         objects: [], //список svg-объектов,
+        currentIndex: null, // поле класса ImagesSet
         imgUrls: [
           { name : "Бочка", src : brush, svgPath: blob  },
           /*

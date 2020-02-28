@@ -12,6 +12,7 @@ import { setObjectEndSizeValues } from '../Redux/actions/svgEditor/setObjectEndS
 import { handleMouseUpAction } from '../Redux/actions/svgEditor/handleMouseUpAction'
 import { handleMouseDownObjAction } from '../Redux/actions/svgEditor/handleMouseDownObjAction'
 import { clearObjectsAction } from '../Redux/actions/svgEditor/clearObjectsAction'
+import renderHTML from 'react-render-html';
 
 /*let defaultTextArea = `
 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -224,6 +225,13 @@ class Editor extends React.Component {
     );
   }
 
+    // Метод для рисования SVG
+    renderSvg(obj) {
+      return (
+        <svg dangerouslySetInnerHTML={{ __html: obj }}></svg>
+      )
+    }
+
   // Метод для изменения размеров выбранного объекта
   resizeSvgElem() {
   }
@@ -284,6 +292,12 @@ class Editor extends React.Component {
               return this.renderCirc(o);
             }
 
+            if (o.type === "svg") {
+              if(o.path != undefined) {
+                return this.renderSvg(o.path);
+              }
+            }
+
             return null;
           })}
         </svg>
@@ -302,7 +316,7 @@ class Editor extends React.Component {
 export default connect(
 
   state => ({
-    svgEditor: state.svgEditor
+    svgEditor: state.svgEditor,
   }),
   dispatch => ({
       onAddRectangle: (xStart, yStart, shiftKey) => {

@@ -8,5 +8,5 @@ import svgEditorImagesSetReducer from './svgEditorImagesSetReducer'
 
 export default combineReducers({ 
     svgEditor: svgEditorReducer,
-    svgImagesSet: svgEditorImagesSetReducer
+    //svgImagesSet: svgEditorImagesSetReducer,
 })

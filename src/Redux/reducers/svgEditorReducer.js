@@ -7,6 +7,8 @@ import { SET_END_SIZE } from '../actions/svgEditor/setObjectEndSizeValues';
 import { HANDLE_MOUSE_UP } from '../actions/svgEditor/handleMouseUpAction';
 import { HANDLE_MOUSE_DOWN_OBJ } from '../actions/svgEditor/handleMouseDownObjAction';
 import { CLEAR_OBJECTS } from '../actions/svgEditor/clearObjectsAction'; 
+import { SET_CURRENT_INDEX } from '../actions/imagesSet/setCurrentIndex';
+import { ADD_SVG_IMAGE } from '../actions/imagesSet/addSvgImage';
 
 // null is set as the default value here for state, because Redux will complain if state is undefined. 
 // You can set initial state here, but it is recommended on the Redux documentation to preload the state within the redux store. 
@@ -87,6 +89,18 @@ export default function svgEditorReducer(state = null, action) {
                 ...state,
                 objects: action.objects
             }
+        case SET_CURRENT_INDEX:
+            return {
+                ...state,
+                currentIndex: action.currentIndex
+            }
+        case ADD_SVG_IMAGE:
+            return {
+                ...state,
+                objects: [...state.objects, action.obj],
+                svgObject: action.obj.id
+            }        
+
         default:
             return state;
     }
